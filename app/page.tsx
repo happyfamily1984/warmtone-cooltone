@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Camera from "@/components/Camera";
+import { saveImage } from "@/lib/save";
 import { CONCEPTS, SEASON_LABEL, type Analysis, type Swatch } from "@/lib/types";
 
 type Step = "capture" | "analysis" | "makeup" | "outfit";
@@ -58,7 +59,7 @@ function Result({ gen, alt, onRetry }: { gen: Gen; alt: string; onRetry: () => v
       <img src={gen.image} alt={alt} />
       <div className="row">
         <button className="btn ghost" onClick={onRetry}>다시 만들기</button>
-        <a className="btn ghost" href={gen.image} download={`${alt}.png`}>저장</a>
+        <button className="btn ghost" onClick={() => saveImage(gen.image!, alt)}>저장</button>
       </div>
     </div>
   );

@@ -20,6 +20,17 @@ npm run dev
 
 카메라는 HTTPS 또는 localhost에서만 동작합니다. Vercel에 배포할 때는 프로젝트 환경변수에 `GEMINI_API_KEY`를 추가하세요.
 
+## 안드로이드 APK
+
+APK는 배포된 웹앱 주소를 띄우는 Capacitor 앱입니다(카메라 권한, 이미지 저장/공유 포함).
+API 키는 서버(Vercel)에만 있고 APK에는 들어가지 않습니다.
+
+```bash
+# JDK 21, Android SDK(platform 36) 필요
+APP_URL=https://<배포 주소> npm run apk
+# 결과: android/app/build/outputs/apk/debug/app-debug.apk
+```
+
 ## 구조
 
 - `app/page.tsx` — 4단계 UI
