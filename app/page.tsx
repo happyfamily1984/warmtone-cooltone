@@ -232,11 +232,14 @@ export default function Home() {
   return (
     <main className={`app ${a?.tone || ""}`}>
       <header>
-        <h1>
-          <span className="warm-t">웜톤</span>
-          <span className="cool-t">쿨톤</span>
+        <h1 className="logo">
+          웜톤쿨톤
+          <svg viewBox="0 0 24 24" aria-hidden>
+            <path d="M10 2c.6 4.6 2.4 6.4 7 7-4.6.6-6.4 2.4-7 7-.6-4.6-2.4-6.4-7-7 4.6-.6 6.4-2.4 7-7Z" />
+            <path d="M19 14c.3 2.2 1.1 3 3.300 3.300-2.200.3-3 1.100-3.300 3.300-.3-2.200-1.100-3-3.300-3.300 2.200-.3 3-1.100 3.300-3.300Z" />
+          </svg>
         </h1>
-        {step !== "capture" && <button className="link" onClick={reset}>처음부터</button>}
+        {step !== "capture" && <button className="restart" onClick={reset}>처음부터</button>}
       </header>
 
       <ol className="steps">
@@ -244,7 +247,7 @@ export default function Home() {
           <li key={s.id} className={i === stepIdx ? "on" : i < stepIdx ? "done" : ""}>
             <button disabled={i >= stepIdx} onClick={() => setStep(s.id)}>
               <i>{i + 1}</i>
-              {s.label}
+              <span>{s.label}</span>
             </button>
           </li>
         ))}
@@ -252,8 +255,18 @@ export default function Home() {
 
       {step === "capture" && (
         <section>
-          <h2>셀카로 퍼스널 컬러 찾기</h2>
-          <p className="sub">사진 한 장으로 톤 진단, 어울리는 메이크업, 코디까지 보여드려요.</p>
+          <h2 className="hero-title">
+            셀카로 <em>퍼스널 컬러</em> 찾기
+            <svg className="hero-heart" viewBox="0 0 32 32" aria-hidden>
+              <path d="M16 27C7 20 4 15 5.500 10.500 7 6 12.500 6 15 11c1.500-5 8-6.500 10.500-2S24 20 16 27Zm0 0c3 1 6 1 9-.5" />
+            </svg>
+            <svg className="hero-line" viewBox="0 0 300 12" preserveAspectRatio="none" aria-hidden>
+              <path d="M3 8C70 3 190 2 297 6" />
+            </svg>
+          </h2>
+          <p className="sub center">
+            사진 한 장으로 <b>톤 진단</b>, 어울리는 <b>메이크업</b>, <b>코디</b>까지 보여드려요.
+          </p>
           <Camera onCapture={onCapture} />
         </section>
       )}
@@ -495,7 +508,12 @@ export default function Home() {
       )}
 
       <footer>
-        AI 진단은 참고용이에요. 메이크업·색 대보기는 휴대폰 안에서 처리되고, 사진은 서버에 저장되지 않아요.
+        <div className="divider" aria-hidden>
+          <svg viewBox="0 0 24 24"><path d="M12 20C5 14.500 3 11 4.500 7.500 6 4.500 10 4.500 12 8c2-3.500 6-3.500 7.500-.5S19 14.500 12 20Z" /></svg>
+        </div>
+        AI 진단은 참고용이에요.
+        <br />
+        메이크업·색 대보기는 휴대폰 안에서 처리되고, 사진은 서버에 저장되지 않아요.
       </footer>
     </main>
   );

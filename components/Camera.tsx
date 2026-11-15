@@ -74,19 +74,27 @@ export default function Camera({ onCapture }: { onCapture: (dataUrl: string) => 
 
   return (
     <div className="camera">
-      <div className="viewfinder">
-        {on ? (
-          <>
-            <video ref={videoRef} playsInline muted />
-            <div className="face-guide" aria-hidden />
-          </>
-        ) : (
-          <div className="viewfinder-empty">
-            <span>🤳</span>
-            <p>얼굴이 가이드 안에 들어오게<br />정면에서 찍어 주세요</p>
-          </div>
-        )}
-      </div>
+      {on ? (
+        <div className="viewfinder">
+          <video ref={videoRef} playsInline muted />
+          <div className="face-guide" aria-hidden />
+        </div>
+      ) : (
+        <div className="hero-card">
+          <img src="/hero.jpg" alt="" width={780} height={546} />
+          <button className="shutter" onClick={start} aria-label="셀카 찍기">
+            <svg viewBox="0 0 24 24" aria-hidden>
+              <path d="M4 8.500A2.500 2.500 0 0 1 6.500 6h1.200l1.100-1.700h6.400L16.300 6h1.200A2.500 2.500 0 0 1 20 8.500v8a2.500 2.500 0 0 1-2.500 2.500h-11A2.500 2.500 0 0 1 4 16.500Z" />
+              <circle cx="12" cy="12.500" r="3.200" />
+            </svg>
+          </button>
+          <p>
+            얼굴이 가이드 안에 들어오게
+            <br />
+            <b>정면에서</b> 찍어 주세요
+          </p>
+        </div>
+      )}
 
       {error && <p className="error">{error}</p>}
 
@@ -97,8 +105,16 @@ export default function Camera({ onCapture }: { onCapture: (dataUrl: string) => 
         </div>
       ) : (
         <div className="col">
-          <button className="btn primary" onClick={start}>셀카 찍기</button>
+          <button className="btn primary cta" onClick={start}>
+            셀카 찍기
+            <svg viewBox="0 0 24 24" aria-hidden><path d="m9 5 7 7-7 7" /></svg>
+          </button>
           <label className="btn ghost">
+            <svg viewBox="0 0 24 24" aria-hidden>
+              <rect x="3" y="4.500" width="18" height="15" rx="3.500" />
+              <circle cx="8.500" cy="10" r="1.600" />
+              <path d="m4 17 5-4.500 3.500 3 3-2.500L20 16.500" />
+            </svg>
             앨범에서 선택
             <input type="file" accept="image/*" hidden onChange={onFile} />
           </label>
@@ -106,9 +122,9 @@ export default function Camera({ onCapture }: { onCapture: (dataUrl: string) => 
       )}
 
       <ul className="tips">
-        <li>창가 자연광에서, 노메이크업에 가까울수록 정확해요</li>
-        <li>필터·뷰티 보정은 꺼 주세요</li>
-        <li>머리카락이 얼굴을 가리지 않게 해 주세요</li>
+        <li>창가 <b>자연광</b>에서, 노메이크업에 가까울수록 정확해요</li>
+        <li>필터·뷰티 보정은 <b>꺼</b> 주세요</li>
+        <li>머리카락이 얼굴을 <b>가리지 않게</b> 해 주세요</li>
       </ul>
     </div>
   );
