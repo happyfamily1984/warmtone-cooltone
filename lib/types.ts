@@ -8,7 +8,22 @@ export interface Swatch {
 export interface Look {
   name: string;
   description: string;
+  lip: string;
+  blush: string;
+  eye: string;
 }
+
+export type GarmentType =
+  | "top" | "outer" | "bottom" | "skirt" | "dress" | "shoes" | "bag" | "accessory";
+
+export interface OutfitPlan {
+  title: string;
+  items: { type: GarmentType; name: string; colorName: string; hex: string }[];
+  tip: string;
+}
+
+/** 유료 이미지 생성(Gemini 이미지 모델)을 켰을 때만 AI 실사 버튼을 보여준다. */
+export const AI_IMAGES = process.env.NEXT_PUBLIC_AI_IMAGES === "1";
 
 export interface Analysis {
   tone: "warm" | "cool";

@@ -36,8 +36,8 @@ const schema = {
       type: "ARRAY",
       items: {
         type: "OBJECT",
-        properties: { name: str, description: str },
-        required: ["name", "description"],
+        properties: { name: str, description: str, lip: str, blush: str, eye: str },
+        required: ["name", "description", "lip", "blush", "eye"],
       },
     },
   },
@@ -60,7 +60,7 @@ Return JSON:
 - bestColors: 8 flattering colors (Korean name + #RRGGBB hex)
 - avoidColors: 4 colors to avoid (Korean name + #RRGGBB hex)
 - makeup: Korean advice for base, eyes, blush, lips (specific shades/finishes), plus one practical tip
-- looks: exactly 3 distinct makeup looks that suit this person (e.g. daily, date, glam). name: short Korean name. description: one Korean sentence listing the concrete shades for eyes, cheeks and lips.
+- looks: exactly 3 distinct makeup looks that suit this person (e.g. daily, date, glam). name: short Korean name. description: one Korean sentence listing the concrete shades for eyes, cheeks and lips. lip, blush, eye: the #RRGGBB hex of the lipstick, blusher and main eyeshadow shade for that look (real cosmetic product colors, clearly different between the 3 looks).
 
 All text in Korean. If no single clear human face is visible, still answer with confidence 0 and explain in summary.`;
 
